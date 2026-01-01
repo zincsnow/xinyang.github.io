@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Professor Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;600;700&family=Merriweather:wght@600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --hkust-navy: #0b2f6a;
+      --hkust-blue: #0f3c8c;
+      --hkust-gold: #b58a1c;
+      --text: #111a2c;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Barlow', system-ui, sans-serif;
+      color: var(--text);
+      background: #f7f9fc;
+      line-height: 1.65;
+      overflow-x: hidden;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      backdrop-filter: blur(10px);
+      background: rgba(255, 255, 255, 0.94);
+      border-bottom: 1px solid rgba(11, 47, 106, 0.08);
+    }
+
+    nav { max-width: 1180px; margin: 0 auto; padding: 12px 24px; display: flex; align-items: center; justify-content: space-between; gap: 14px; }
+
+    .brand { display: flex; align-items: center; gap: 10px; font-weight: 700; color: var(--hkust-navy); letter-spacing: 0.4px; }
+
+    .nav-links {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .nav-links a { text-decoration: none; color: var(--hkust-navy); font-weight: 600; padding: 6px 10px; border-radius: 8px; transition: background 0.15s ease, color 0.15s ease; }
+    .nav-links a:hover { background: rgba(15, 60, 140, 0.1); color: var(--hkust-blue); }
+
+    main {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 40px 24px 80px;
+      display: flex;
+      flex-direction: column;
+      gap: 70px;
+    }
+
+    section { scroll-margin-top: 90px; }
+
+    h1, h2, h3 {
+      font-family: 'Merriweather', serif;
+      letter-spacing: 0.2px;
+      color: var(--hkust-navy);
+    }
+
+    h1 { font-size: 2.8rem; margin-top: 8px; }
+    h2 { font-size: 1.95rem; margin: 8px 0 20px; }
+    h3 { font-size: 1.25rem; margin-bottom: 8px; }
+
+    p { color: #263142; }
+
+    .hero {
+      background: #fff;
+      border-radius: 18px;
+      padding: 28px;
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 24px;
+      border: 1px solid rgba(11, 47, 106, 0.05);
+      box-shadow: 0 8px 20px rgba(11, 47, 106, 0.04);
+    }
+
+    .hero-content { position: relative; display: grid; gap: 14px; }
+
+    .photo-box {
+      background: rgba(11, 47, 106, 0.08);
+      border-radius: 14px;
+      min-height: 220px;
+      display: grid;
+      place-items: center;
+      color: var(--hkust-navy);
+      font-weight: 700;
+      border: 1px solid rgba(11, 47, 106, 0.05);
+    }
+
+    .card-grid {
+      display: grid;
+      gap: 18px;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    }
+
+    .card { background: #fff; border-radius: 12px; padding: 16px; border: 1px solid rgba(11, 47, 106, 0.05); box-shadow: none; }
+
+    .list {
+      display: grid;
+      gap: 14px;
+      margin-top: 10px;
+    }
+
+    .list-item { padding: 14px; border-radius: 10px; background: #fff; border: none; box-shadow: none; display: grid; gap: 6px; }
+
+    .list-item strong { color: var(--hkust-blue); }
+    .list-item small { color: #5c6270; }
+
+    .pub-card { display: grid; grid-template-columns: 180px 1fr; gap: 16px; padding: 14px; border-radius: 12px; background: #fff; border: none; box-shadow: none; }
+    .pub-thumb { border-radius: 10px; background: rgba(11, 47, 106, 0.12); color: var(--hkust-navy); display: grid; place-items: center; padding: 12px; font-weight: 700; text-align: center; min-height: 140px; }
+
+    .pub-card h3 {
+      margin: 0 0 6px;
+      color: var(--hkust-navy);
+    }
+
+    .pub-meta {
+      color: #5c6270;
+      font-size: 0.95rem;
+      margin-bottom: 6px;
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 10px;
+    }
+
+    .tag {
+      background: rgba(11, 47, 106, 0.08);
+      color: var(--hkust-blue);
+      padding: 6px 10px;
+      border-radius: 10px;
+      font-weight: 600;
+      font-size: 0.88rem;
+    }
+
+    .cta { text-align: center; padding: 22px; border-radius: 12px; border: 1px solid rgba(11, 47, 106, 0.05); background: #fff; box-shadow: none; }
+
+    footer {
+      max-width: 1180px;
+      margin: 0 auto 40px;
+      padding: 0 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+      color: #5c6270;
+    }
+
+    @media (max-width: 900px) {
+      .hero { grid-template-columns: 1fr; }
+      .pub-card { grid-template-columns: 1fr; }
+      .pub-thumb { min-height: 120px; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <div class="brand">
+        <span>Prof. Your Name</span>
+      </div>
+      <div class="nav-links">
+        <a href="#about">About</a>
+        <a href="#interests">Research</a>
+        <a href="#news">News</a>
+        <a href="#publications">Selected Publications</a>
+        <a href="#join">Join Us</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero" id="about">
+      <div class="hero-content">
+        <h1>About Me</h1>
+        <p>Single-paragraph bio placeholder. Summarize your role as an incoming assistant professor at HKUST(GZ), your research vision, and the real-world impact you aim to create. Keep it concise and personable.</p>
+      </div>
+      <div class="photo-box">Photo Placeholder</div>
+    </section>
+
+    <section id="interests">
+      <h2>Research Interests</h2>
+      <p>Single-paragraph overview placeholder describing your main research directions, core methods, and how they connect to impactful applications.</p>
+    </section>
+
+    <section id="news">
+      <h2>News</h2>
+      <div class="list">
+        <div class="list-item">
+          <small>Month YYYY</small>
+          <strong>Headline placeholder for a recent achievement or announcement.</strong>
+          <span>1–2 sentence detail placeholder.</span>
+        </div>
+        <div class="list-item">
+          <small>Month YYYY</small>
+          <strong>Headline placeholder for invited talk, grant, or award.</strong>
+          <span>1–2 sentence detail placeholder.</span>
+        </div>
+        <div class="list-item">
+          <small>Month YYYY</small>
+          <strong>Headline placeholder for new publication or preprint.</strong>
+          <span>1–2 sentence detail placeholder.</span>
+        </div>
+      </div>
+    </section>
+
+    <section id="publications">
+      <h2>Selected Publications</h2>
+      <div class="list">
+        <div class="pub-card">
+          <div class="pub-thumb">Image<br>Placeholder</div>
+          <div>
+            <h3>Paper Title Placeholder</h3>
+            <div class="pub-meta">Authors placeholder · Venue/Year placeholder</div>
+            <p>Brief 2–3 sentence summary placeholder describing the core contribution and impact.</p>
+            <div class="tags">
+              <span class="tag">PDF</span>
+              <span class="tag">Code</span>
+              <span class="tag">Project</span>
+            </div>
+          </div>
+        </div>
+        <div class="pub-card">
+          <div class="pub-thumb">Image<br>Placeholder</div>
+          <div>
+            <h3>Paper Title Placeholder</h3>
+            <div class="pub-meta">Authors placeholder · Venue/Year placeholder</div>
+            <p>Brief 2–3 sentence summary placeholder describing the core contribution and impact.</p>
+            <div class="tags">
+              <span class="tag">PDF</span>
+              <span class="tag">Code</span>
+              <span class="tag">Project</span>
+            </div>
+          </div>
+        </div>
+        <div class="pub-card">
+          <div class="pub-thumb">Image<br>Placeholder</div>
+          <div>
+            <h3>Paper Title Placeholder</h3>
+            <div class="pub-meta">Authors placeholder · Venue/Year placeholder</div>
+            <p>Brief 2–3 sentence summary placeholder describing the core contribution and impact.</p>
+            <div class="tags">
+              <span class="tag">PDF</span>
+              <span class="tag">Code</span>
+              <span class="tag">Project</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="join">
+      <h2>Join Us</h2>
+      <p>Short invitation placeholder describing open positions for students, postdocs, or collaborators. Include what you value and how to reach you.</p>
+      <div class="card-grid" style="margin-top:16px;">
+        <div class="card">
+          <h3>Graduate Students</h3>
+          <p>Placeholder for interests, timeline, and application instructions.</p>
+        </div>
+        <div class="card">
+          <h3>Postdoctoral Researchers</h3>
+          <p>Placeholder for focus areas, expected start date, and materials needed.</p>
+        </div>
+        <div class="card">
+          <h3>Collaborations</h3>
+          <p>Placeholder for industry/academic partnerships and contact details.</p>
+        </div>
+      </div>
+      <div class="cta" style="margin-top:22px;">
+        <h3 style="font-family:'Merriweather', serif; color: var(--hkust-navy); margin-bottom: 10px;">Let's build the next chapter</h3>
+        <p style="margin-bottom: 14px;">Email a brief note and CV to start the conversation. I welcome motivated collaborators who are excited about these research directions.</p>
+        <a class="btn btn-primary" href="mailto:your.name@ust.hk">your.name@ust.hk</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <span>© 2024 Your Name · HKUST(GZ)</span>
+    <span>Last updated: Month YYYY</span>
+  </footer>
+</body>
+</html>
