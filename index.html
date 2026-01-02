@@ -21,15 +21,20 @@
       background: #f7f9fc;
       line-height: 1.65;
       overflow-x: hidden;
+      padding-top: 120px; /* reserve space for fixed header, even after long scroll */
     }
 
     header {
-      position: sticky;
+      position: fixed;
       top: 0;
-      z-index: 10;
+      left: 0;
+      right: 0;
+      z-index: 9999;
+      width: 100%;
       backdrop-filter: blur(10px);
-      background: rgba(255, 255, 255, 0.94);
-      border-bottom: 1px solid rgba(11, 47, 106, 0.08);
+      background: rgba(255, 255, 255, 0.96);
+      border-bottom: 1px solid rgba(11, 47, 106, 0.1);
+      box-shadow: 0 6px 14px rgba(11, 47, 106, 0.08);
     }
 
     nav { max-width: 1180px; margin: 0 auto; padding: 12px 24px; display: flex; align-items: center; justify-content: space-between; gap: 14px; }
@@ -54,7 +59,7 @@
       gap: 70px;
     }
 
-    section { scroll-margin-top: 90px; }
+    section { scroll-margin-top: 140px; }
 
     h1, h2, h3 {
       font-family: 'Merriweather', serif;
@@ -93,6 +98,8 @@
 
     .hero-content { position: relative; display: grid; gap: 14px; }
 
+    .hero-side { display: grid; grid-template-columns: auto 1fr; gap: 14px; align-items: start; }
+
     .photo-box {
       background: linear-gradient(135deg, rgba(181, 138, 28, 0.12), rgba(11, 47, 106, 0.08));
       border-radius: 14px;
@@ -102,6 +109,24 @@
       color: var(--hkust-navy);
       font-weight: 700;
       border: 1px solid rgba(181, 138, 28, 0.3);
+      overflow: hidden;
+    }
+
+    .photo-box img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .contact-stack { display: grid; gap: 6px; font-size: 0.96rem; color: var(--text); }
+    .contact-stack .title { font-weight: 700; color: var(--hkust-blue); }
+    .contact-item { display: inline-flex; align-items: center; gap: 8px; }
+    .icon {
+      width: 16px;
+      height: 16px;
+      display: inline-block;
+      color: var(--hkust-navy);
     }
 
     .card-grid {
@@ -177,6 +202,10 @@
       .pub-card { grid-template-columns: 1fr; }
       .pub-thumb { min-height: 120px; }
     }
+
+    @media (max-width: 700px) {
+      .hero-side { grid-template-columns: 1fr; }
+    }
   </style>
 </head>
 <body>
@@ -198,10 +227,31 @@
   <main>
     <section class="hero" id="about">
       <div class="hero-content">
-        <div class="hero-name"> About Me</div>
-        <p><span class="bio-lead">Xin Yang </span> is an incoming Assistant Professor at Hong Kong University of Science and Technology (Guangzhou) and currently a postdoctoral researcher at Rice University.Prior to this, he was a postdoctoral researcher at the University of Pennsylvania (2023-2025). He received his Ph.D. in Electrical and Computer Engineering from the National University of Singapore in 2023 and his bachelor's degree from the University of Electronic Science and Technology of China (UESTC).</p>
+        <div class="hero-name">Xin Yang (杨锌)</div>
+        <p>
+          I am an incoming Assistant Professor at the Hong Kong University of Science and Technology (Guangzhou) and currently a postdoctoral researcher at Rice University. Prior to this, I was a postdoctoral researcher at the University of Pennsylvania (2023–2025). I received my Ph.D. in Electrical and Computer Engineering from the National University of Singapore in 2023 and my bachelor’s degree from the University of Electronic Science and Technology of China (UESTC).
+          </p>
       </div>
-      <div class="photo-box">Photo Placeholder</div>
+      <div class="hero-side">
+        <div class="photo-box">
+          <img src="Asset/potrait.png" alt="Portrait of Xin Yang">
+        </div>
+        <div class="contact-stack">
+          <div class="title">Incoming Assistant Professor, HKUST(GZ)</div>
+          <div class="contact-item">
+            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M2 6.5C2 5.12 3.12 4 4.5 4h15c1.38 0 2.5 1.12 2.5 2.5v11c0 1.38-1.12 2.5-2.5 2.5h-15C3.12 20 2 18.88 2 17.5v-11Zm2.5-.5c-.28 0-.5.22-.5.5v.3l8 4.5 8-4.5v-.3c0-.28-.22-.5-.5-.5h-15Zm15 12c.28 0 .5-.22.5-.5v-8.08l-7.45 4.19a1 1 0 0 1-.98 0L5 9.92V18c0 .28.22.5.5.5h14Z"/></svg>
+            <span>your.name@ust.hk</span>
+          </div>
+          <div class="contact-item">
+            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M12 2a7 7 0 0 0-7 7c0 5.25 7 13 7 13s7-7.75 7-13a7 7 0 0 0-7-7Zm0 9.5a2.5 2.5 0 1 1 0-5 2.5 2.5 0 0 1 0 5Z"/></svg>
+            <span>Office address placeholder</span>
+          </div>
+          <div class="contact-item">
+            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M12 3 1 9l11 6 11-6-4-2.18V12h-2V6.45L12 3Zm0 12.36L5 11.4v4.4L12 19l7-3.2v-4.4l-7 3.56Z"/></svg>
+            <a href="#" style="color: var(--hkust-blue); font-weight: 700; text-decoration: none;">Google Scholar</a>
+          </div>
+        </div>
+      </div>
     </section>
 
     <section id="interests">
