@@ -302,11 +302,11 @@
         <span>Xin Yang</span>
       </div>
       <div class="nav-links">
-        <a href="#about">About</a>
-        <a href="#research">Research</a>
-        <a href="#news">News</a>
-        <a href="#publications">Publications</a>
-        <a href="#join">Join Us</a>
+        <a href="#about" data-target="about">About</a>
+        <a href="#interests" data-target="interests">Research</a>
+        <a href="#news" data-target="news">News</a>
+        <a href="#publications" data-target="publications">Publications</a>
+        <a href="#join" data-target="join">Join Us</a>
       </div>
     </nav>
   </header>
@@ -584,5 +584,16 @@
   <footer>
     <span>© 2026 Xin Yang · HKUST(GZ)</span>
   </footer>
+  <script>
+    document.querySelectorAll(".nav-links a[data-target]").forEach((link) => {
+      link.addEventListener("click", (event) => {
+        event.preventDefault();
+        const target = document.getElementById(link.dataset.target);
+        if (target) {
+          target.scrollIntoView({ behavior: "smooth", block: "start" });
+        }
+      });
+    });
+  </script>
 </body>
 </html>
